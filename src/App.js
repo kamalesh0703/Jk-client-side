@@ -14,7 +14,6 @@ function App() {
     <>
       <Router>
         <NavBar/>
-
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/song" element={<Song/>}/>
@@ -27,5 +26,4 @@ function App() {
     </>
   );
 }
-
 export default App;

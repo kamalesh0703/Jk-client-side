@@ -9,68 +9,64 @@ function Song() {
   const dispatch = useDispatch();
   const [song, setSong] = useState([]);
   const [playlists, setPlaylists] = useState([]);
-  const [hover,setHover]=useState(true)
+  const [hover, setHover] = useState(true);
+  const [style,setStyle]=useState(true)
 
   const user = useSelector((state) => state.user.value);
 
- 
-
-
+useEffect(()=>{
+  if(user.urllink === ""){
+    setStyle(false)
+  }
+  else{
+    setStyle(true)
+  }
+})
   useEffect(() => {
     getSongs();
   }, [setSong]);
 
   const getSongs = async () => {
-    let resp = await fetch("http://localhost:5001/Music/getMusic");
+    let resp = await fetch("http://localhost:5002/Music/getMusic");
     let result = await resp.json();
     setSong(result);
+    console.log(result)
   };
 
   const getSongPlaylist = async () => {
-    let resp = await fetch("http://localhost:5001/Playlist/getPlaylist");
+    let resp = await fetch("http://localhost:5002/Playlist/getPlaylist");
     let result = await resp.json();
-    setPlaylists(result)
+    setPlaylists(result);
   };
-  useEffect(()=>{
-    getSongPlaylist()
-  },[])
+  useEffect(() => {
+    getSongPlaylist();
+  }, []);
 
-
-  const addPlaylist = async (playlist,song) => {
-    console.log(song)
-    let reqObj={playlist:playlist}
-    let headers={
-      method:"PUT",
-      body:JSON.stringify(reqObj),
-      headers:{
-        'content-type':'application/json'
-      }
-    }
-    let id=song._id;
-    fetch(`http://localhost:5001/Music/addPlaylist/${id}`,headers)
-    getSongPlaylist()
-    setHover(!hover)
-  }
+  const addPlaylist = async (playlist, song) => {
+    console.log(song);
+    let reqObj = { playlist: playlist };
+    let headers = {
+      method: "PUT",
+      body: JSON.stringify(reqObj),
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+    let id = song._id;
+    fetch(`http://localhost:5002/Music/addPlaylist/${id}`, headers);
+    getSongPlaylist();
+    setHover(!hover);
+  };
 
   return (
-    <div className="song_container">
+    <div className={style ?"close_song_container":"song_container"}>
+      <h2 className="song-n">Songs</h2>
       {song.map((song) => {
         return (
-          <div
-            className="song_box_container"
-            key={song._id}
-            onClick={() =>
-              dispatch(
-                login({
-                  urllink: song.url,
-                  songartist: song.artist,
-                  songname: song.title,
-                  id: song.id,
-                })
-              )
-            }
-          >
-            <div className="song_name_img_box">
+          <div className="song_box_container" key={song._id} onClick={()=> dispatch(login({urllink:song.url,songartist: song.artist,songname: song.title,id: song.id}))}>
+            <div
+              className="song_name_img_box"
+              >
               <img src={imgsong} alt="" className="imgsong" />
               <div className="song_name_container">
                 <p>{song.title}</p>
@@ -78,14 +74,29 @@ function Song() {
               </div>
             </div>
             <div className="add_playlist">
-              <span onClick={()=>setHover(!hover)}><MdPlaylistAdd /></span>
-              <div className={hover ?"playlist_hover_container":"close_playlist_hover_container"}>
-                {playlists.map((playlist)=>{
-                  return(
+              <span onClick={() => setHover(!hover)}>
+                <MdPlaylistAdd />
+              </span>
+              <div
+                className={
+                  hover
+                    ? "playlist_hover_container"
+                    : "close_playlist_hover_container"
+                }
+              >
+                {playlists.map((playlist) => {
+                  return (
                     <div>
-                    <p className="playlistname" onClick={()=>{addPlaylist(playlist.playlist,song)}}>{playlist.playlist}</p>
+                      <p
+                        className="playlistname"
+                        onClick={() => {
+                          addPlaylist(playlist.playlist, song);
+                        }}
+                      >
+                        {playlist.playlist}
+                      </p>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>

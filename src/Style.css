@@ -16,7 +16,9 @@
     --bg-color-upload:#123043;
     --song-container-bg:#243040;
 }
-
+.display_none{
+    display: none;
+}
 /* Nav Bar Section */
 
 .navbar{
@@ -119,6 +121,21 @@
     color: #fff;
     padding:0 1rem;
 }
+.close_home_container{
+    background-image: url('./assets/billy-huynh-W8KTS-mhFUE-unsplash.jpg');
+    background-size:cover cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 86vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding:0 1rem;
+}
 .home_note{
     font-weight: 400;
     font-size: 3vw;
@@ -178,6 +195,15 @@
 .signup_container{
     width: 100%;
     height: 93vh;
+    background-color: var(--form-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+.close_signup_container{
+    width: 100%;
+    height: 86vh;
     background-color: var(--form-bg-color);
     display: flex;
     align-items: center;
@@ -258,6 +284,15 @@ span{
     justify-content: center;
     padding: 15px;
 }
+.close_login_container{
+    width: 100%;
+    height: 86vh;
+    background-color: var(--form-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
 .login_form{
     width: max-content;
     height: max-content;
@@ -327,6 +362,12 @@ span{
     background-color: var(--bg-color-upload);
     padding: 20px 7%;
 }
+.close_upload_container{
+    width: 100%;
+    height: 86vh;
+    background-color: var(--bg-color-upload);
+    padding: 20px 7%;
+}
 .upload_form{
     display: flex;
     flex-direction: column;
@@ -388,6 +429,15 @@ span{
     align-items: center;
     padding: 10px 0 0 0 ;
 }
+.close_song_container{
+    width: 100%;
+    height: 86vh;
+    background-color: #1c2840;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0 0 0;
+}
 .song_box_container{
     width: 80%;
     background-color:#243040;
@@ -398,11 +448,16 @@ span{
     padding: 0 15px;
     color: #fff;
     justify-content: space-between;
+    cursor: pointer;
 }
 .imgsong{
  width: 35px;
  height: 35px;
 
+}
+.song-n{
+    color: #fff;
+    font-size: 20px;
 }
 .song_name_img_box{
     display: flex;
@@ -432,6 +487,14 @@ span{
     flex-direction: column;
     
 }
+.close_playlist_container{
+    width: 100%;
+    height: 86vh;
+    background-color: var(--bg-color-upload);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
 .create_playlist_btn{
     color:red;
     background-color: var(--btn-yellow);
@@ -439,7 +502,7 @@ span{
     padding: 5px 10px;
     border-radius: 1rem;
     position: absolute;
-    bottom: 5vh;
+    bottom: 10vh;
     right: 20px;
     cursor: pointer;
 }
@@ -613,3 +676,41 @@ span{
 
 
 /* Audio Player */
+
+.audioplayer_container{
+    background-color: var(--dark-bg-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+}
+.close_audioplayer_container{
+    display: none;
+}
+.audio_controls{
+    display:  flex;
+    align-items: center;
+    justify-content: center;
+}
+#audio_tag{
+    display: none;
+}
+#rangebtn{
+    width: 10%;
+    margin: 0px 20px 0 15px;
+}
+
+.audio_control_btn{
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0px 5px;
+}
+.audio_control_btn>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

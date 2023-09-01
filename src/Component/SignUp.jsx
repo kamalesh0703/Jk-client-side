@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {useSelector} from 'react-redux';
 function SignUp() {
   const navigate = useNavigate();
   const initalvalues = { name: "", email: "", password: "" };
   const [formvalues, setFormvalues] = useState(initalvalues);
   const [formErrors, setFormErrors] = useState({});
+  const [style,setStyle]=useState(false)
+
+  const user = useSelector((state) => state.user.value);
+  useEffect(()=>{
+    if(user.urllink === ""){
+      setStyle(true)
+    }
+    else{
+      setStyle(false)
+    }
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +82,7 @@ function SignUp() {
         "content-type": "application/json",
       },
     };
-    let resp = await fetch("http://localhost:5000/User/resgister", headers);
+    let resp = await fetch("http://localhost:5002/User/resgister", headers);
     let result = await resp.json();
     console.log(result);
     if (result.Status === "Failure") {
@@ -84,7 +96,7 @@ function SignUp() {
     }
   };
   return (
-    <div className="signup_container">
+    <div className={style ? "signup_container":"close_signup_container"}>
       <form className="signup_form">
         <p className="register">Register</p>
         <label className="signup_label">

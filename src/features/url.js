@@ -1,10 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+
 export const userSlice=createSlice({
     name:"user",
     initialState:{value:{urllink:"",songname:"",songartist:"",id:""}},
     reducers:{
-        login:(state,action)=>{
+        login: (state,action)=>{
             state.value=action.payload
         }
     }

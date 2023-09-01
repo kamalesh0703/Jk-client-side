@@ -10,11 +10,24 @@ function Upload() {
   const [audio,setAudio]=useState("");
   const [style,setStyle]=useState(false);
   const[id,setId]=useState("")
+
+
+  const user = useSelector((state) => state.user.value);
+  useEffect(()=>{
+    if(user.urllink){
+      setStyle(false)
+    }
+    else{
+      setStyle(true)
+    }
+  })
+
+
   useEffect(()=>{
     getData()
   },[])
   const getData=()=>{
-    fetch('http://localhost:5001/Music/getMusic')
+    fetch('http://localhost:5002/Music/getMusic')
   .then((response) => response.json())
   .then((json) => setId(json));
   }
@@ -26,7 +39,7 @@ function Upload() {
     data.append("artist",artist);
     data.append("coverAlbum",coverAlbum);
     data.append('id',id.length+1)
-    fetch("http://localhost:5001/Music/uploadMusic",{
+    fetch("http://localhost:5002/Music/uploadMusic",{
       method:"POST",
       body:data,
     })
@@ -34,7 +47,7 @@ function Upload() {
     navigate('/song')
   }
   return (
-    <div className="upload_container">
+    <div className={style ? "upload_container":"close_upload_container"}>
       <p className="upload">Upload Song</p>
       <form className="upload_form">
         <label className="upload_label">Tilte</label>

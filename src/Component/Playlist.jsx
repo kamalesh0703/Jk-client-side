@@ -15,8 +15,17 @@ function Playlist() {
   const [box_container, setBox_container] = useState(true);
   const [select_playlist, setSelect_playlist] = useState([]);
   const [playlistlengths, setplaylistlengths] = useState(0);
+  const [style, setStyle] = useState(false);
 
   const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    if (user.urllink === "") {
+      setStyle(true);
+    } else {
+      setStyle(false);
+    }
+  });
 
   const playlistlength = () => {
     var result = music.filter((n) => n.playlist === select_playlist);
@@ -39,7 +48,7 @@ function Playlist() {
       },
     };
     let resp = await fetch(
-      "http://localhost:5001/Playlist/createPlaylist",
+      "http://localhost:5002/Playlist/createPlaylist",
       headers
     );
     let result = await resp.json();
@@ -47,7 +56,7 @@ function Playlist() {
   };
 
   const getPlaylist_song = async () => {
-    let resp = await fetch("http://localhost:5001/Playlist/getPlaylist");
+    let resp = await fetch("http://localhost:5002/Playlist/getPlaylist");
     let result = await resp.json();
     setPlaylist_song(result);
   };
@@ -74,7 +83,7 @@ function Playlist() {
       method: "DELETE",
     };
     let resp = await fetch(
-      `http://localhost:5001/Playlist/deletePlaylist/${id}`,
+      `http://localhost:5002/Playlist/deletePlaylist/${id}`,
       header
     );
     let result = await resp.json();
@@ -87,7 +96,7 @@ function Playlist() {
   }, []);
 
   const getMusic = async () => {
-    let resp = await fetch("http://localhost:5001/Music/getMusic");
+    let resp = await fetch("http://localhost:5002/Music/getMusic");
     let result = await resp.json();
     setMusic(result);
   };
@@ -105,11 +114,11 @@ function Playlist() {
       },
     };
     let id = song._id;
-    fetch(`http://localhost:5001/Music/removePlaylist/${id}`, headers);
+    fetch(`http://localhost:5002/Music/removePlaylist/${id}`, headers);
     getMusic();
   };
   return (
-    <div className="playlist_container">
+    <div className={style ? "playlist_container":"close_playlist_container"}>
       <form
         className={
           display_form ? "remove_playlist_create_form" : "playlist_create_form"
@@ -169,13 +178,25 @@ function Playlist() {
         })}
       </div>
       <div
-        className={box_container ? "close_playlist_song_row" : "playlist_box_row"}>
-          <div className={box_container?"close_selectedplaylist":"selectedplaylist"}>
+        className={
+          box_container ? "close_playlist_song_row" : "playlist_box_row"
+        }
+      >
+        <div
+          className={
+            box_container ? "close_selectedplaylist" : "selectedplaylist"
+          }
+        >
           <div>
             <p> {select_playlist}</p>
             <p>Songs-{playlistlengths}</p>
           </div>
-          <div className="close" onClick={()=>setBox_container(!box_container)}>X</div>
+          <div
+            className="close"
+            onClick={() => setBox_container(!box_container)}
+          >
+            X
+          </div>
         </div>
         {music
           .filter(function (playlist) {

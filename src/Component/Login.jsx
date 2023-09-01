@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSolidLogIn } from 'react-icons/bi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
 function Login() {
   const navigate=useNavigate();
   const [logindetails,setLoginDetails]=useState({email:"",password:""});
   const [error,setError]=useState("");
+  const [style,setStyle]=useState(false)
+
+  const user = useSelector((state) => state.user.value);
+  useEffect(()=>{
+    if(user.urllink === ""){
+      setStyle(true)
+    }
+    else{
+      setStyle(false)
+    }
+  })
+  
   const handleChange=(e)=>{
     const {name,value}=e.target;
     setLoginDetails({...logindetails,[name]:value});
@@ -37,7 +50,7 @@ function Login() {
         "content-type":"application/json"
       },
     };
-    let resp=await fetch("http://localhost:5000/User/login",headers);
+    let resp=await fetch("http://localhost:5002/User/login",headers);
     let result=await resp.json();
     console.log(result)
     if(result.Status=== "sucessfull"){
@@ -45,6 +58,7 @@ function Login() {
       sucessnotify()
       setTimeout(()=>{
         navigate('/')}, 5000)
+        localStorage.setItem('auth','true')
     }
     else if(result.Status==="Failure"){
       incorrectpassword()
@@ -74,7 +88,7 @@ function Login() {
     theme: "colored",
     });
   return (
-    <div className="login_container">
+    <div className={style ? "login_container":"close_login_container"}>
       <form className="login_form" onSubmit={handleSubmit}>
         <p className="login">Login</p>
         <label className="login_label">

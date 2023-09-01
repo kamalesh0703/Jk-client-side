@@ -8,6 +8,7 @@ import Upload from "./Component/Upload";
 import Playlist from "./Component/Playlist";
 import Login from "./Component/Login";
 import SignUp from "./Component/SignUp";
+import AudioPlayer from "./Component/AudioPlayer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<SignUp/>}/>
         </Routes>
       </Router>
+      <AudioPlayer/>
     </>
   );
 }

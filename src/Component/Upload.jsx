@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function Upload() {
   const navigate = useNavigate();
   const [title,setTitle]=useState("");
-  const [description,setDescription]=useState("");
+  const [description,setDescription]=useState("" );
   const [artist,setArtist]=useState("");
   const [coverAlbum,setCoverAlbum]=useState("");
   const [audio,setAudio]=useState("");

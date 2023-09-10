@@ -9,18 +9,25 @@ function Home() {
 
   useEffect(()=>{
     if(user.urllink){
-      setStyle(false)
+      navbar()
     }
     else{
-      setStyle(true)
-    }
+nav()    }
   })
+  const navbar=()=>{
+    setStyle(false)
+  }
+  const nav=()=>{
+    setStyle(true)
+  }
   useEffect(()=>{
     if(localStorage.getItem('auth')){
-      setIsLogin(false)
-    }
+ddff()    }
     
   })
+  const ddff=()=>{
+    setIsLogin(false)
+  }
 
   return (
     <>

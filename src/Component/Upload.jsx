@@ -34,7 +34,7 @@ function Upload() {
     getData()
   },[])
   const getData=()=>{
-    fetch('http://localhost:5002/Music/getMusic')
+    fetch('https://j-6jdu.onrender.com/Music/getMusic')
   .then((response) => response.json())
   .then((json) => setId(json));
   }
@@ -46,7 +46,7 @@ function Upload() {
     data.append("artist",artist);
     data.append("coverAlbum",coverAlbum);
     data.append('id',id.length+1)
-    fetch("http://localhost:5002/Music/uploadMusic",{
+    fetch("https://j-6jdu.onrender.com/Music/uploadMusic",{
       method:"POST",
       body:data,
     })

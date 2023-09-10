@@ -54,7 +54,7 @@ function Playlist() {
       },
     };
     let resp = await fetch(
-      "http://localhost:5002/Playlist/createPlaylist",
+      "https://j-6jdu.onrender.com/Playlist/createPlaylist",
       headers
     );
     let result = await resp.json();
@@ -62,7 +62,7 @@ function Playlist() {
   };
 
   const getPlaylist_song = async () => {
-    let resp = await fetch("http://localhost:5002/Playlist/getPlaylist");
+    let resp = await fetch("https://j-6jdu.onrender.com/Playlist/getPlaylist");
     let result = await resp.json();
     setPlaylist_song(result);
   };
@@ -86,7 +86,7 @@ function Playlist() {
       method: "DELETE",
     };
     let resp = await fetch(
-      `http://localhost:5002/Playlist/deletePlaylist/${id}`,
+      `https://j-6jdu.onrender.com/Playlist/deletePlaylist/${id}`,
       header
     );
     let result = await resp.json();
@@ -99,7 +99,7 @@ function Playlist() {
   }, []);
 
   const getMusic = async () => {
-    let resp = await fetch("http://localhost:5002/Music/getMusic");
+    let resp = await fetch("https://j-6jdu.onrender.com/Music/getMusic");
     let result = await resp.json();
     setMusic(result);
   };

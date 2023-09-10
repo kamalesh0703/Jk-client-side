@@ -51,7 +51,7 @@ function Upload() {
       <p className="upload">Upload Song</p>
       <form className="upload_form">
         <label className="upload_label">Tilte</label>
-        <input type="text" className="upload_input" placeholder="Title" name="title" onChange={(e)=>setTitle(e.target.value)}/>
+        <input type="text" className="upload_input" placeholder="Please Enter song name same as Title Name" name="title" onChange={(e)=>setTitle(e.target.value)}/>
         <label className="upload_label">Description</label>
         <input type="text" className="upload_input" placeholder="Description"  name="title" onChange={(e)=>setDescription(e.target.value)} />
         <label className="upload_label">Artist</label>

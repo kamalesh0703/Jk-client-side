@@ -13,13 +13,15 @@ function NavBar() {
     else{
       setIsLogin(true)
     }
-    console.log("jheld")
   })
-
-  
   useEffect(()=>{
-    console.log(islogin)
+    console.log("dd")
   },[islogin])
+  const logout=()=>{
+    localStorage.removeItem("auth");
+    window.location.reload()
+  }
+
   return (
     <>
       <nav className="navbar">
@@ -43,7 +45,7 @@ function NavBar() {
           <Link to="/register">
             <li className={islogin ? "nav_link btn":"display_none"}>SignUp</li>
           </Link>
-          <li onClick={()=>localStorage.removeItem("auth")} className={islogin ?"display_none":"nav_link btn"}>Logout</li>
+          <li onClick={()=>logout()} className={islogin ?"display_none":"nav_link btn"}>Logout</li>
         </ul>
         <div className="menu" onClick={()=> setIsMobile(!ismobile)}>{ismobile ? <AiOutlineClose />:<BiMenu /> }</div>
       </nav>

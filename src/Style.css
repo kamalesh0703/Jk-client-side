@@ -48,6 +48,7 @@
     border-radius: 1rem;
     margin: 0px 5px;
     font-size: 13px;
+    cursor: pointer;
 }
 .menu{
     display: none;
@@ -392,7 +393,7 @@ span{
     outline: none;
 }
 .upload_submit{
-    padding: 0px 15px;
+    padding: 0px 15px; 
     border: none;
     background-color:var(--btn-yellow) ;
     color: red;
@@ -414,6 +415,9 @@ span{
         text-align: center;
         color: #fff;
         font-size:6vw;
+    }
+    .audio_container{
+        justify-content: space-evenly;
     }
 }
 
@@ -677,40 +681,46 @@ span{
 
 /* Audio Player */
 
-.audioplayer_container{
+#audio{
+    display: none;
+}
+.audio_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--dark-bg-color);
     color: #fff;
+    height: 6.8vh;
+}
+.audio_control{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 7vh;
 }
-.close_audioplayer_container{
-    display: none;
-}
-.audio_controls{
-    display:  flex;
-    align-items: center;
-    justify-content: center;
-}
-#audio_tag{
-    display: none;
+.audio_control>div{
+    padding: 10px;
 }
 #rangebtn{
-    width: 10%;
-    margin: 0px 20px 0 15px;
+    width: 50px;
+    background-color: RED;
 }
-
-.audio_control_btn{
-    font-size: 23px;
+.song_name_artist{
+    padding: 0px 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    padding: 0px 5px;
+    font-size: 12px;
 }
-.audio_control_btn>div{
+#hello{
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+.close_audio_container{
+    display: none;
+}
+.backward{
+    display: none;
+}
+.nod{
+    display: block;
 }

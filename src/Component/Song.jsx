@@ -21,7 +21,7 @@ useEffect(()=>{
   else{
     setStyle(true)
   }
-})
+},[user])
   useEffect(() => {
     getSongs();
   }, [setSong]);
@@ -30,7 +30,6 @@ useEffect(()=>{
     let resp = await fetch("http://localhost:5002/Music/getMusic");
     let result = await resp.json();
     setSong(result);
-    console.log(result)
   };
 
   const getSongPlaylist = async () => {
@@ -57,13 +56,16 @@ useEffect(()=>{
     getSongPlaylist();
     setHover(!hover);
   };
+  const out=(song)=>{
+    dispatch(login({urllink:song.url,songartist: song.artist,songname: song.title,id: song.id}))
+  }
 
   return (
     <div className={style ?"close_song_container":"song_container"}>
       <h2 className="song-n">Songs</h2>
       {song.map((song) => {
         return (
-          <div className="song_box_container" key={song._id} onClick={()=> dispatch(login({urllink:song.url,songartist: song.artist,songname: song.title,id: song.id}))}>
+          <div className="song_box_container" key={song.id} onClick={()=> out(song)}>
             <div
               className="song_name_img_box"
               >
@@ -86,12 +88,12 @@ useEffect(()=>{
               >
                 {playlists.map((playlist) => {
                   return (
-                    <div>
+                    <div key={playlist._id}>
                       <p
                         className="playlistname"
                         onClick={() => {
                           addPlaylist(playlist.playlist, song);
-                        }}
+                        }} 
                       >
                         {playlist.playlist}
                       </p>

@@ -13,12 +13,19 @@ function Login() {
   const user = useSelector((state) => state.user.value);
   useEffect(()=>{
     if(user.urllink === ""){
-      setStyle(true)
+      kkj()
     }
     else{
-      setStyle(false)
+      ass()
     }
   })
+  const kkj=()=>{
+    setStyle(true)
+    
+  }
+  const ass=()=>{
+    setStyle(false)
+  }
   
   const handleChange=(e)=>{
     const {name,value}=e.target;

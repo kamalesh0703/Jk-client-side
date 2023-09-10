@@ -8,12 +8,19 @@ function NavBar() {
   useEffect(()=>{
     if(localStorage.getItem('auth'))
     {
-      setIsLogin(false)
+      ieru()
     }
     else{
-      setIsLogin(true)
+      dfda()
     }
   })
+  const ieru=()=>{
+    setIsLogin(false)
+  }
+  const dfda=()=>{
+    setIsLogin(true)
+
+  }
   useEffect(()=>{
     console.log("dd")
   },[islogin])

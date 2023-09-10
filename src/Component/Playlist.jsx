@@ -14,26 +14,32 @@ function Playlist() {
   const [playlist_song, setPlaylist_song] = useState([]);
   const [box_container, setBox_container] = useState(true);
   const [select_playlist, setSelect_playlist] = useState([]);
-  const [playlistlengths, setplaylistlengths] = useState(0);
+  // const [playlistlengths, setplaylistlengths] = useState(0);
   const [style, setStyle] = useState(false);
 
   const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
     if (user.urllink === "") {
-      setStyle(true);
+      sdfds()
     } else {
-      setStyle(false);
+      sfddsfas()
     }
   });
+  const sdfds=()=>{
+    setStyle(true);
+  }
+  const sfddsfas=()=>{
+    setStyle(false);
+  }
 
-  const playlistlength = () => {
-    var result = music.filter((n) => n.playlist === select_playlist);
-    setplaylistlengths(result.length);
-  };
-  useEffect(() => {
-    playlistlength();
-  }, [select_playlist]);
+  // const playlistlength = () => {
+  //   var result = music.filter((n) => n.playlist === select_playlist);
+  //   setplaylistlengths(result.length);
+  // };
+  // useEffect(() => {
+  //   playlistlength();
+  // }, [select_playlist]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPlaylist({ ...playlist, [name]: value });
@@ -68,9 +74,6 @@ function Playlist() {
     setDisplay_form(!display_form);
     getPlaylist_song();
   };
-  useEffect(() => {
-    playlistlength();
-  }, [select_playlist]);
   const handlePlaylist = (playlist) => {
     setBox_container(!box_container);
     setSelect_playlist(playlist);
@@ -189,7 +192,7 @@ function Playlist() {
         >
           <div>
             <p> {select_playlist}</p>
-            <p>Songs-{playlistlengths}</p>
+            <p>Songs</p>
           </div>
           <div
             className="close"

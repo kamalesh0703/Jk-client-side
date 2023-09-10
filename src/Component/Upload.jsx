@@ -15,12 +15,19 @@ function Upload() {
   const user = useSelector((state) => state.user.value);
   useEffect(()=>{
     if(user.urllink){
-      setStyle(false)
+      dsfa()
     }
     else{
-      setStyle(true)
+      dkfj()
     }
   })
+  const dsfa=()=>{
+    setStyle(false)
+  }
+  const dkfj=()=>{
+    setStyle(true)
+
+  }
 
 
   useEffect(()=>{

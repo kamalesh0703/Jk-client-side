@@ -15,13 +15,19 @@ function SignUp() {
   const user = useSelector((state) => state.user.value);
   useEffect(()=>{
     if(user.urllink === ""){
-      setStyle(true)
+      sd()
     }
     else{
-      setStyle(false)
+      dfdsf()
     }
   })
+  const sd=()=>{
+    setStyle(true)
+  }
+const dfdsf=()=>{
+  setStyle(false)
 
+}
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormvalues({ ...formvalues, [name]: value });

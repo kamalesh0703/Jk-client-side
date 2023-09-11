@@ -62,7 +62,7 @@ function AudioPlayer() {
     setIsDisplay(true);
   };
   const forward = async (id) => {
-    let resp = await fetch(`https://j-6jdu.onrender.com/Music/getSong/${id + 1}`);
+    let resp = await fetch(`https://juke-stream-server-side.onrender.com/Music/getSong/${id + 1}`);
     let result = await resp.json();
     dispatch(
       login({
@@ -83,7 +83,7 @@ function AudioPlayer() {
     setFormattedTime(formatted);
   }, [currentTime]);
   const backward = async (id) => {
-    let resp = await fetch(`https://j-6jdu.onrender.com/Music/getSong/${id - 1}`);
+    let resp = await fetch(`https://juke-stream-server-side.onrender.com/Music/getSong/${id - 1}`);
     let result = await resp.json();
     console.log(result);
     console.log(result[0].url);

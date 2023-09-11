@@ -57,7 +57,7 @@ function Login() {
         "content-type":"application/json"
       },
     };
-    let resp=await fetch("https://j-6jdu.onrender.com/User/login",headers);
+    let resp=await fetch("https://juke-stream-server-side.onrender.com/User/login",headers);
     let result=await resp.json();
     console.log(result)
     if(result.Status=== "sucessfull"){

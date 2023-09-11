@@ -27,13 +27,13 @@ useEffect(()=>{
   }, [setSong]);
 
   const getSongs = async () => {
-    let resp = await fetch("https://j-6jdu.onrender.com/Music/getMusic");
+    let resp = await fetch("https://juke-stream-server-side.onrender.com/Music/getMusic");
     let result = await resp.json();
     setSong(result);
   };
 
   const getSongPlaylist = async () => {
-    let resp = await fetch("https://j-6jdu.onrender.com/Playlist/getPlaylist");
+    let resp = await fetch("https://juke-stream-server-side.onrender.com/Playlist/getPlaylist");
     let result = await resp.json();
     setPlaylists(result);
   };
@@ -52,7 +52,7 @@ useEffect(()=>{
       },
     };
     let id = song._id;
-    fetch(`https://j-6jdu.onrender.com/Music/addPlaylist/${id}`, headers);
+    fetch(`https://juke-stream-server-side.onrender.com/Music/addPlaylist/${id}`, headers);
     getSongPlaylist();
     setHover(!hover);
   };

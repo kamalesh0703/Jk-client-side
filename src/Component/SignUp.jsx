@@ -88,7 +88,7 @@ const dfdsf=()=>{
         "content-type": "application/json",
       },
     };
-    let resp = await fetch("https://j-6jdu.onrender.com/User/resgister", headers);
+    let resp = await fetch("https://juke-stream-server-side.onrender.com/User/resgister", headers);
     let result = await resp.json();
     console.log(result);
     if (result.Status === "Failure") {

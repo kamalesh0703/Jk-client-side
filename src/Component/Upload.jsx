@@ -68,8 +68,8 @@ function Upload() {
         <label className="upload_label">Audio File</label>
         <input
           type="file"
-          name="audio"
-          id="audio"
+          name="upload"
+          id="upload"
           className="audio_input"
           placeholder="Audio Files"
           typeof="mp3/audio"
